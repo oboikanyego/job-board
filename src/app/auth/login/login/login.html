@@ -1,16 +1,50 @@
-<mat-card>
-  <mat-card-title>Login</mat-card-title>
-  <form (ngSubmit)="submit()">
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Email</mat-label>
-      <input matInput [(ngModel)]="email" name="email" required />
-    </mat-form-field>
+<div class="login-wrapper">
+  <mat-card class="login-card">
+    <div class="login-content">
+      <!-- Left image section -->
+      <div class="login-image">
+        <img src="https://www.liveabout.com/thmb/L-QwrHzCE4ABsVLxjjdVomHG8gw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/close-up-of-newspaper-page-seen-through-magnifying-glass-450772561-584d4fee3df78c491efd213d.jpg" alt="Login Illustration" />
+      </div>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Password</mat-label>
-      <input type="password" matInput [(ngModel)]="password" name="password" required />
-    </mat-form-field>
+      <!-- Right form section -->
+      <div class="login-form">
+        <mat-card-title>Welcome Back</mat-card-title>
+        <mat-card-subtitle>Sign in to your account</mat-card-subtitle>
 
-    <button mat-raised-button color="primary" type="submit">Login</button>
-  </form>
-</mat-card>
+        <form [formGroup]="loginForm" (ngSubmit)="submit()">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="you@example.com" />
+            <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+              Enter a valid email
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" placeholder="••••••••" />
+            <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+              Password is required
+            </mat-error>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" class="full-width" type="submit">
+            Sign in
+          </button>
+
+          <button mat-stroked-button color="warn" class="full-width google-btn flex" type="button" (click)="loginFirebase()">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png" alt="Google" class="google-icon" /> Sign in with Google
+          </button>
+        </form>
+
+        <div class="additional-links">
+          <a href="#">Forgot Password?</a>
+          <span>Don't have an account? <a href="#">Sign up</a></span>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

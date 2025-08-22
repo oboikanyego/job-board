@@ -4,3 +4,118 @@
 .full-height{
     height: 100%;
 }
+/* Wrapper centers the card */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 1rem;
+}
+
+/* Card styling */
+.login-card {
+  display: flex;
+  max-width: 900px;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+/* Split content */
+.login-content {
+  display: flex;
+  width: 100%;
+}
+
+/* Left image */
+.login-image {
+  flex: 1;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-image img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Right form */
+.login-form {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+mat-card-subtitle {
+  font-size: 0.9rem;
+  color: gray;
+  margin-bottom: 1.5rem;
+}
+
+/* Inputs */
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
+button.full-width {
+  height: 48px;
+  font-weight: 500;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-color: #4285f4;
+  color: #4285f4;
+}
+
+.google-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Additional links */
+.additional-links {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.additional-links a {
+  text-decoration: none;
+  color: #2575fc;
+  font-weight: 500;
+}
+
+.additional-links a:hover {
+  text-decoration: underline;
+}
+img{
+    height: 100%;
+}
+.flex{
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
