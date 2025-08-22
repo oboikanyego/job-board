@@ -65,19 +65,28 @@ export class Login implements OnInit {
   }
 
   // Login using Firebase Google sign-in
-  loginFirebase() {
-    this.loading = true;
-    this.firebaseAuth
-      .loginWithGoogle()
-      .then((res) => {
-        // res.user contains Firebase user info
-        // optionally send to your backend to get JWT
-        this.commonService.showError('Firebase login successful!');
-        this.router.navigate(['/']); // redirect after login
-      })
-      .catch((err) => {
-        this.commonService.showError(err.message || 'Firebase login failed');
-      })
-      .finally(() => (this.loading = false));
-  }
+loginFirebase() {
+  this.loading = true;
+  this.firebaseAuth
+    .loginWithGoogle()
+    .then(async (res) => {
+      const idToken = await res.user.getIdToken();
+
+      // Send it to your backend → backend verifies it with Firebase
+      this.auth.loginWithFirebase({ token: idToken }).subscribe({
+        next: ({ token, user }) => {
+          this.auth.saveAuth(token, user); // store JWT from your backend
+          this.router.navigate(['/']);
+        },
+        error: (err) => {
+          this.commonService.showError(err.error?.message || 'Firebase login failed');
+        }
+      });
+    })
+    .catch((err) => {
+      this.commonService.showError(err.message || 'Firebase login failed');
+    })
+    .finally(() => (this.loading = false));
+}
+
 }

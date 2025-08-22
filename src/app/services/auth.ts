@@ -28,4 +28,7 @@ export class Auth {
   role() {
     return this.user?.role;
   }
+  loginWithFirebase(data: any) {
+    return this.http.post<any>(`${this.base}/firebase-login`, data);
+  }
 }
