@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    CommonModule,        // ✅ keep this
+    CommonModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule
