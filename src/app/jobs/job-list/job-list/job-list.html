@@ -1,1 +1,97 @@
-<p>job-list works!</p>
+<form [formGroup]="filterForm" class="filters" (ngSubmit)="load()">
+  <mat-form-field appearance="outline">
+    <mat-label>Search title</mat-label>
+    <input matInput formControlName="q" placeholder="Search title" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="example-full-width">
+    <mat-label>Category</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="category"
+      [matAutocomplete]="categoryAuto"
+    />
+
+    <mat-autocomplete #categoryAuto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option
+        *ngFor="let option of filteredOptions | async"
+        [value]="option"
+      >
+        {{ option.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="example-full-width">
+    <mat-label>Location</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="location"
+      [matAutocomplete]="locationAuto"
+    />
+
+    <mat-autocomplete
+      #locationAuto="matAutocomplete"
+      [displayWith]="displayLocation"
+    >
+      <mat-option
+        *ngFor="let option of locationOptions$ | async"
+        [value]="option"
+      >
+        {{ option.city }} - {{ option.region }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Sort</mat-label>
+    <mat-select formControlName="sort">
+      <mat-option *ngFor="let option of sortOptions" [value]="option.value">
+        {{ option.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" class="apply-btn">Apply</button>
+</form>
+
+<div class="job-list">
+  <mat-card *ngFor="let job of jobs" class="job-card">
+    <mat-card-header>
+      <mat-card-title>{{ job.title }}</mat-card-title>
+      <mat-card-subtitle>
+        {{ job.company }} • {{ job.location }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>{{ job.description | slice : 0 : 120 }}...</p>
+
+      <div class="job-meta">
+        <span class="chip">{{ job.type }}</span>
+        <span class="chip" *ngIf="job.level">{{ job.level }}</span>
+        <span class="chip" *ngIf="job.remote">Remote</span>
+      </div>
+
+      <div class="salary" *ngIf="job.salary">💰 {{ job.salary }}</div>
+
+      <div class="skills" *ngIf="job.skills?.length">
+        <mat-chip-set>
+          <mat-chip *ngFor="let skill of job.skills">{{ skill }}</mat-chip>
+        </mat-chip-set>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button
+        mat-stroked-button
+        color="primary"
+        [routerLink]="['/job', job._id]"
+      >
+        View Details
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

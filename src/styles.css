@@ -3,14 +3,14 @@
 
 
 
-html, body {
+html,body{
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
 }
 
-app-root,app-login {
+app-root,app-login,app-job-list {
   display: block;   /* 👈 critical: block or flex */
   height: 100%;
   width: 100%;

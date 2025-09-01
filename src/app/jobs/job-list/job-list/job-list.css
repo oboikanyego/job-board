@@ -1,0 +1,75 @@
+.filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+input,
+select {
+    padding: 6px;
+}
+
+.job-list {
+    /* display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem; */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.job-card {
+    border: 1px solid #eee;
+    padding: 12px;
+    border-radius: 12px;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.job-card {
+  margin: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease-in-out;
+}
+
+.job-card:hover {
+  transform: translateY(-3px);
+}
+
+.apply-btn{
+  margin: 1em .5em;
+  border-radius: 20px;
+  text-transform: none;
+  padding: 4px 16px;
+}
+
+.job-meta {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  background: #f1f1f1;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+}
+
+.salary {
+  margin-top: 0.5rem;
+  font-weight: 500;
+  color: #2e7d32;
+}
+
+.skills {
+  margin-top: 0.5rem;
+}
