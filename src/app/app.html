@@ -6,25 +6,22 @@
       <span class="spacer"></span>
 
       <nav class="nav-links">
-        <a mat-button routerLink="/applications" routerLinkActive="active-link"
-          >Applications</a
-        >
-        <a mat-button routerLink="/jobs" routerLinkActive="active-link"
-          >Jobs</a
-        >
-        <a mat-button routerLink="/results" routerLinkActive="active-link"
-          >Profile</a
-        >
-        <a mat-button routerLink="/reviews" routerLinkActive="active-link"
-          >Subscription</a
-        >
+        <ng-container *ngFor="let item of navItems">
+  <a
+     mat-button 
+     [routerLink]="item.path" 
+     routerLinkActive="active-link">
+    {{ item.label }}
+  </a>
+</ng-container>
+
       </nav>
 
       <span class="spacer"></span>
 
       <div class="auth-buttons">
         <button mat-button color="secondary" class="login-btn">
-            Create Post
+          Create Post
         </button>
         <button mat-raised-button color="primary" class="signup-btn">
           Logout
