@@ -1,0 +1,11 @@
+<div *ngIf="loaderService.isLoading$ | async" class="overlay">
+  <div class="loading-text dot">
+    Please wait
+    <span
+      class="dot"
+      *ngFor="let d of dots; let i = index"
+      [style.animationDelay]="i * 0.2 + 's'"
+      >.</span
+    >
+  </div>
+</div>

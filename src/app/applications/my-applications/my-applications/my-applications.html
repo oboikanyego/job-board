@@ -1,15 +1,5 @@
 <h2>My Applications</h2>
 
-<!-- 🔹 Global Loading Spinner -->
-<div *ngIf="loading" class="loading-container">
-  <mat-progress-spinner
-    mode="indeterminate"
-    diameter="60"
-    color="primary">
-  </mat-progress-spinner>
-  <p>Loading your applications...</p>
-</div>
-
 <!-- 🔹 No Applications -->
 <div *ngIf="!loading && apps.length === 0" class="no-apps">
   You haven't applied to any jobs yet.

@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { Auth } from './services/auth';
 import { Common } from './services/common';
-
+import { LoaderComponent } from './loader/loader-component/loader-component';
 @Component({
   selector: 'app-root',
   imports: [
@@ -18,6 +18,7 @@ import { Common } from './services/common';
     MatButtonModule,
     MatIconModule,
     RouterModule,
+    LoaderComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
