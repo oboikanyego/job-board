@@ -108,50 +108,49 @@ export class JobList implements OnInit {
     const filters = this.filterForm.value;
     console.log('Filters:', filters);
 
-    // this.jobsService.list(filters).subscribe(res => this.jobs = res);
-    this.jobs = [
-      {
-        _id: '1',
-        title: 'Frontend Developer',
-        company: 'Tech Corp',
-        location: 'Cape Town, South Africa',
-        description:
-          'We are looking for a frontend developer with Angular experience...',
-        type: 'Full-time',
-        level: 'Mid',
-        remote: true,
-        salary: 'R30k - R45k / month',
-        skills: ['Angular', 'TypeScript', 'CSS'],
-      },
-      {
-        _id: '2',
-        title: 'Backend Developer',
-        company: 'Cloud Solutions',
-        location: 'Johannesburg, South Africa',
-        description:
-          'Join our backend team to build scalable Node.js services...',
-        type: 'Contract',
-        level: 'Senior',
-        remote: false,
-        salary: 'R50k / month',
-        skills: ['Node.js', 'MongoDB', 'Express'],
-      },
-      {
-        _id: '3',
-        title: 'UI/UX Designer',
-        company: 'Design Studio',
-        location: 'Remote',
-        description:
-          'Creative designer needed to craft intuitive user experiences...',
-        type: 'Part-time',
-        level: 'Junior',
-        remote: true,
-        salary: 'R20k / month',
-        skills: ['Figma', 'Adobe XD', 'Prototyping'],
-      },
-    ];
+    this.jobsService.list(filters).subscribe(res => this.jobs = res);
+    //   {
+    //     _id: '1',
+    //     title: 'Frontend Developer',
+    //     company: 'Tech Corp',
+    //     location: 'Cape Town, South Africa',
+    //     description:
+    //       'We are looking for a frontend developer with Angular experience...',
+    //     type: 'Full-time',
+    //     level: 'Mid',
+    //     remote: true,
+    //     salary: 'R30k - R45k / month',
+    //     skills: ['Angular', 'TypeScript', 'CSS'],
+    //   },
+    //   {
+    //     _id: '2',
+    //     title: 'Backend Developer',
+    //     company: 'Cloud Solutions',
+    //     location: 'Johannesburg, South Africa',
+    //     description:
+    //       'Join our backend team to build scalable Node.js services...',
+    //     type: 'Contract',
+    //     level: 'Senior',
+    //     remote: false,
+    //     salary: 'R50k / month',
+    //     skills: ['Node.js', 'MongoDB', 'Express'],
+    //   },
+    //   {
+    //     _id: '3',
+    //     title: 'UI/UX Designer',
+    //     company: 'Design Studio',
+    //     location: 'Remote',
+    //     description:
+    //       'Creative designer needed to craft intuitive user experiences...',
+    //     type: 'Part-time',
+    //     level: 'Junior',
+    //     remote: true,
+    //     salary: 'R20k / month',
+    //     skills: ['Figma', 'Adobe XD', 'Prototyping'],
+    //   },
+    // ];
 
-    console.log('this.categories:', this.categories);
+    // console.log('this.categories:', this.categories);
   }
 
   displayFn(category: any): string {

@@ -1,50 +1,50 @@
-<mat-card class="job-details-card">
+<mat-card class="job-details-card" [formGroup]="jobForm">
   <h2>Job Details</h2>
   <div class="form-container">
     <!-- Left Column -->
     <div class="form-left">
       <mat-form-field appearance="outline">
         <mat-label>Title</mat-label>
-        <input matInput placeholder="Front-End Developer" />
+        <input matInput formControlName="title" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Field of Work</mat-label>
-        <input matInput placeholder="Investment Banking" />
+        <input matInput formControlName="category" />
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <!-- ✅ Job Sectors (chips outside mat-form-field) -->
+      <div class="form-field">
         <mat-label>Job Sectors</mat-label>
-        <mat-chip-listbox>
-          <mat-chip-option *ngFor="let sector of selectedSectors" selected>
+        <mat-chip-set>
+          <mat-chip *ngFor="let sector of (jobForm.get('jobSectors')?.value ||[])">
             {{ sector }}
-          </mat-chip-option>
-        </mat-chip-listbox>
-
-        <mat-select (selectionChange)="selectedSectors.push($event.value)">
-          <mat-option *ngFor="let sector of jobSectors" [value]="sector">
-            {{ sector }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+          </mat-chip>
+        </mat-chip-set>
+      </div>
 
       <div class="salary-row">
         <mat-form-field appearance="outline" class="salary-range">
-          <mat-label>Salary Range</mat-label>
-          <input matInput placeholder="$2500 - $3200" />
+          <mat-label>Salary Min</mat-label>
+          <input matInput type="number" formControlName="salaryMin" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="salary-range">
+          <mat-label>Salary Max</mat-label>
+          <input matInput type="number" formControlName="salaryMax" />
         </mat-form-field>
         <mat-form-field appearance="outline" class="salary-type">
           <mat-label>Currency</mat-label>
-          <mat-select>
+          <mat-select formControlName="salaryCurrency">
             <mat-option value="usd">USD</mat-option>
             <mat-option value="eur">EUR</mat-option>
+            <mat-option value="ZAR">ZAR</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
       <mat-form-field appearance="outline">
         <mat-label>Salary Type</mat-label>
-        <mat-select>
+        <mat-select formControlName="salaryType">
           <mat-option *ngFor="let type of salaryTypes" [value]="type">
             {{ type }}
           </mat-option>
@@ -53,28 +53,32 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Stage</mat-label>
-        <input matInput placeholder="Stage name" />
+        <input matInput formControlName="stage" />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Deadline</mat-label>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date" />
+        <input matInput [matDatepicker]="picker" formControlName="deadline" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Job Type</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let type of jobTypes" [value]="type">{{
-            type
-          }}</mat-option>
+        <mat-select formControlName="jobType">
+          <mat-option *ngFor="let type of jobTypes" [value]="type">{{ type }}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Job Location</mat-label>
-        <input matInput placeholder="27064 Arne Stravenue" />
+        <input matInput formControlName="location" />
+      </mat-form-field>
+
+      <!-- ✅ Candidate can still add cover letter -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Cover Letter</mat-label>
+        <textarea matInput rows="5" formControlName="coverLetter"></textarea>
       </mat-form-field>
     </div>
 
@@ -85,41 +89,20 @@
         <mat-card-content>
           <div class="upload-box">
             <p>Choose a file or drag & drop it here</p>
-            <button
-              mat-stroked-button
-              color="primary"
-              (click)="fileInput.click()"
-            >
+            <button mat-stroked-button color="primary" (click)="fileInput.click()">
               <mat-icon>upload</mat-icon> Browse File
             </button>
-            <input
-              type="file"
-              #fileInput
-              hidden
-              (change)="onFileSelected($event)"
-            />
+            <input type="file" #fileInput hidden (change)="onFileSelected($event)" />
           </div>
 
-          <div
-            *ngFor="let file of uploadedFiles; let i = index"
-            class="file-item"
-          >
-            <mat-icon color="warn">movie</mat-icon>
-            <span>
-              {{ file.name }} ({{ file.uploaded }} MB / {{ file.size }} MB)
-            </span>
+          <div *ngFor="let file of uploadedFiles; let i = index" class="file-item">
+            <mat-icon color="warn">description</mat-icon>
+            <span>{{ file.name }} ({{ file.uploaded }} MB / {{ file.size }} MB)</span>
 
-            <mat-progress-bar
-              *ngIf="!file.completed"
-              mode="determinate"
-              [value]="(file.uploaded / file.size) * 100"
-            ></mat-progress-bar>
+            <mat-progress-bar *ngIf="!file.completed" mode="determinate" [value]="(file.uploaded / file.size) * 100"></mat-progress-bar>
 
-            <mat-icon *ngIf="file.completed" color="primary"
-              >check_circle</mat-icon
-            >
+            <mat-icon *ngIf="file.completed" color="primary">check_circle</mat-icon>
 
-            <!-- Remove button -->
             <button mat-icon-button color="warn" (click)="removeFile(i)">
               <mat-icon>delete</mat-icon>
             </button>
@@ -132,8 +115,6 @@
   <!-- Action Buttons -->
   <div class="actions">
     <button mat-button color="warn">Cancel</button>
-    <button mat-raised-button color="primary" (click)="save()">
-      Save & Continue
-    </button>
+    <button mat-raised-button color="primary" (click)="save()">Apply</button>
   </div>
 </mat-card>

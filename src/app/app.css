@@ -59,8 +59,9 @@
     align-content: center;
 }
 .body{
-    height: calc(100vh - 8em);
+    height: 100%;
 }
 .main-container{
     background-color: #fff5f4;
+    height: 100%;
 }

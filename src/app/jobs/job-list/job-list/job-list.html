@@ -70,12 +70,12 @@
       <p>{{ job.description | slice : 0 : 120 }}...</p>
 
       <div class="job-meta">
-        <span class="chip">{{ job.type }}</span>
+        <span class="chip">{{ job.jobType }}</span>
         <span class="chip" *ngIf="job.level">{{ job.level }}</span>
         <span class="chip" *ngIf="job.remote">Remote</span>
       </div>
 
-      <div class="salary" *ngIf="job.salary">💰 {{ job.salary }}</div>
+      <div class="salary" *ngIf="job.salaryMin">💰 R{{ job.salaryMin }} - R{{ job.salaryMax }}  / {{ job.salaryType }}</div>
 
       <div class="skills" *ngIf="job.skills?.length">
         <mat-chip-set>

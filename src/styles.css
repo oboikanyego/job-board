@@ -9,10 +9,12 @@ html,body{
   height: 100%;
   width: 100%;
 }
-
-app-root,app-login,app-job-list {
-  display: block;   /* 👈 critical: block or flex */
+app-root{
   height: 100%;
+}
+app-root,app-login,app-job-list,app-my-applications {
+  display: block;   /* 👈 critical: block or flex */
+  /* height: 100%; */
   width: 100%;
 }
 

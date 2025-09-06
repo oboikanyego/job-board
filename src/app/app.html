@@ -1,16 +1,16 @@
 <div class="main-container">
-  <div class="navigation">
+  <div class="navigation" *ngIf="commonService.IsUserSignedIn">
     <mat-toolbar class="navbar">
       <span class="logo">Job listing</span>
 
       <span class="spacer"></span>
 
       <nav class="nav-links">
-        <a mat-button routerLink="/home" routerLinkActive="active-link"
+        <a mat-button routerLink="/applications" routerLinkActive="active-link"
           >Applications</a
         >
-        <a mat-button routerLink="/daily-log" routerLinkActive="active-link"
-          >Posts</a
+        <a mat-button routerLink="/jobs" routerLinkActive="active-link"
+          >Jobs</a
         >
         <a mat-button routerLink="/results" routerLinkActive="active-link"
           >Profile</a

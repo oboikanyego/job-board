@@ -9,6 +9,7 @@ export class Common {
 
   private sharedData = new BehaviorSubject<any>(null);
   sharedData$ = this.sharedData.asObservable();
+  IsUserSignedIn:boolean = false;
 
   constructor(private snackBar: MatSnackBar) {}
 

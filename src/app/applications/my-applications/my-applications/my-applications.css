@@ -1,0 +1,64 @@
+.my-applications-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.no-apps {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 12px;
+  background: #f5f5f5;
+  color: #666;
+}
+
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.app-card {
+  border-radius: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.app-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.job-title {
+  text-decoration: none;
+  font-weight: 600;
+  color: #1976d2;
+}
+
+.cover-letter {
+  margin: 1rem 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.docs-section {
+  margin-top: 1rem;
+}
+
+.doc-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+mat-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding-right: 0.5rem;
+}

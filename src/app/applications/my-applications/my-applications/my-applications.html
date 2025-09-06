@@ -1,1 +1,63 @@
-<p>my-applications works!</p>
+<h2>My Applications</h2>
+
+<!-- 🔹 Global Loading Spinner -->
+<div *ngIf="loading" class="loading-container">
+  <mat-progress-spinner
+    mode="indeterminate"
+    diameter="60"
+    color="primary">
+  </mat-progress-spinner>
+  <p>Loading your applications...</p>
+</div>
+
+<!-- 🔹 No Applications -->
+<div *ngIf="!loading && apps.length === 0" class="no-apps">
+  You haven't applied to any jobs yet.
+</div>
+
+<!-- 🔹 Applications List -->
+<div *ngIf="!loading && apps.length > 0" class="apps-container">
+<mat-card *ngFor="let app of apps" class="app-card">
+  <mat-card-header>
+    <mat-card-title>
+      <a [routerLink]="['/job', app.jobId?._id]">
+        {{ app.jobId?.title }}
+      </a>
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{ app.jobId?.location || 'Remote' }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>{{ app.coverLetter }}</p>
+
+    <!-- 🔹 Status -->
+    <mat-chip-listbox>
+      <mat-chip [color]="getStatusColor(app.status)" selected>
+        {{ app.status | titlecase }}
+      </mat-chip>
+    </mat-chip-listbox>
+
+    <!-- 🔹 Uploaded Documents -->
+    <div *ngIf="app.documents?.length > 0" class="docs-section">
+      <h4>Uploaded Documents</h4>
+      <div class="doc-list">
+        <mat-chip *ngFor="let doc of app.documents" selectable="false" removable="false">
+          <mat-icon>description</mat-icon>
+          {{ doc.public_id.split('/').pop() }}
+          <button mat-icon-button matTooltip="Download"
+                  (click)="downloadDoc(app,doc)">
+            <mat-icon>download</mat-icon>
+          </button>
+        </mat-chip>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-footer>
+    <small>Applied on: {{ app.createdAt | date:'medium' }}</small>
+  </mat-card-footer>
+</mat-card>
+
+</div>

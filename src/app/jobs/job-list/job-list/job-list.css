@@ -25,6 +25,7 @@ select {
     border: 1px solid #eee;
     padding: 12px;
     border-radius: 12px;
+    width: 300px;
 }
 
 a {

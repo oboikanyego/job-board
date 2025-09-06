@@ -3,7 +3,10 @@
     <div class="login-content">
       <!-- Left image section -->
       <div class="login-image">
-        <img src="https://www.liveabout.com/thmb/L-QwrHzCE4ABsVLxjjdVomHG8gw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/close-up-of-newspaper-page-seen-through-magnifying-glass-450772561-584d4fee3df78c491efd213d.jpg" alt="Login Illustration" />
+        <img
+          src="https://www.liveabout.com/thmb/L-QwrHzCE4ABsVLxjjdVomHG8gw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/close-up-of-newspaper-page-seen-through-magnifying-glass-450772561-584d4fee3df78c491efd213d.jpg"
+          alt="Login Illustration"
+        />
       </div>
 
       <!-- Right form section -->
@@ -14,7 +17,11 @@
         <form [formGroup]="loginForm" (ngSubmit)="submit()">
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Email</mat-label>
-            <input matInput formControlName="email" placeholder="you@example.com" />
+            <input
+              matInput
+              formControlName="email"
+              placeholder="you@example.com"
+            />
             <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
               Email is required
             </mat-error>
@@ -25,18 +32,53 @@
 
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Password</mat-label>
-            <input type="password" matInput formControlName="password" placeholder="••••••••" />
+
+            <input
+              [type]="showPassword ? 'password' : 'text'"
+              matInput
+              formControlName="password"
+              placeholder="••••••••"
+            />
+
+            <!-- Toggle button -->
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              (click)="showPassword = !showPassword"
+              [attr.aria-label]="'Hide or show password'"
+              [attr.aria-pressed]="!showPassword"
+            >
+              <mat-icon>{{ showPassword ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+
             <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
               Password is required
             </mat-error>
           </mat-form-field>
 
-          <button mat-raised-button color="primary" class="full-width" type="submit">
+          <button
+            mat-raised-button
+            color="primary"
+            class="full-width"
+            type="submit"
+          >
             Sign in
           </button>
 
-          <button mat-stroked-button color="warn" class="full-width google-btn flex" type="button" (click)="loginFirebase()">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png" alt="Google" class="google-icon" /> Sign in with Google
+          <button
+            mat-stroked-button
+            color="warn"
+            class="full-width google-btn flex"
+            type="button"
+            (click)="loginFirebase()"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1200px-Google_%22G%22_logo.svg.png"
+              alt="Google"
+              class="google-icon"
+            />
+            Sign in with Google
           </button>
         </form>
 
